@@ -1,10 +1,10 @@
-package com.fluxit.keycloak;
+package com.fluxit.architecture.reference.authenticated;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class KeycloakApplicationTests {
+class AuthenticatedApplicationTests {
 
 	@Test
 	void contextLoads() {

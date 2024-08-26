@@ -1,4 +1,4 @@
-package com.fluxit.keycloak.controller;
+package com.fluxit.architecture.reference.authenticated.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class KeycloakController {
+public class AuthenticatedController {
 
     @GetMapping("/public")
     public String publicEndpoint() {

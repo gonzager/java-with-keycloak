@@ -1,13 +1,13 @@
-package com.fluxit.keycloak;
+package com.fluxit.architecture.reference.authenticated;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KeycloakApplication {
+public class AuthenticatedApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KeycloakApplication.class, args);
+		SpringApplication.run(AuthenticatedApplication.class, args);
 	}
 
 }
