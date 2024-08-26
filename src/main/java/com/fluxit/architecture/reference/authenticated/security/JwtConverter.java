@@ -65,7 +65,7 @@ public class JwtConverter
             return roles.stream()
                     .filter(validRoles::contains)
                     .map(
-                    role -> new SimpleGrantedAuthority("ROLE_" + role.toString().toUpperCase()))
+                    role -> new SimpleGrantedAuthority("ROLE_" + role))
                     .toList();
         }
 
