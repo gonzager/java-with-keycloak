@@ -94,7 +94,7 @@ En la clase SecurityConfig se define lo básico de Spring Security y habilita el
 
 Esto permite agregarle a los controladores la anotación 
 
-```
+```java
     @PreAuthorize("hasRole('admin')")
     public String adminEndpoint() {
         // mejor que sólo entre admin...
