@@ -39,11 +39,45 @@ Le damos unos segundos y verificamos ingresando a http://localhost:7000/swagger-
 
 El ejemplo viene con dos usuarios que solo pueden acceder mediante post a la URL: http://localhost:8080/realms/FluxITRealm/protocol/openid-connect/token
 
-```
-# usuario admin
-curl 
+```bash
 # usuarion estándar
+curl -d 'client_id=fluxit-client' \
+  -d 'username=reneperez' \
+  -d 'password=123456' \
+  -d 'grant_type=password' \
+  'http://localhost:8080/realms/FluxITRealm/protocol/openid-connect/token'
 
+# usuario admin
+curl -d 'client_id=fluxit-client' \
+  -d 'username=andygomez' \
+  -d 'password=123456' \
+  -d 'grant_type=password' \
+  'http://localhost:8080/realms/FluxITRealm/protocol/openid-connect/token'
+```
+
+Esto debe devolver un json con el jwt en el campo access_token. 
+
+Este lo podes analizar en Si tenés jq agrega al final "| jq '.access_token'".
+
+Para chusmearlo lo podés pegar en la caja de texto de la izquierda en https://jwt.io.
+
+### Para probarlo desde consola
+
+Guardate el token del paso anterior y usando curl:
+
+```bash
+curl http://localhost:7000/api/public
+#Devuelve: This is a public endpoint
+
+curl http://localhost:7000/api/authenticated -I
+#Devuelve: HTTP/1.1 401 
+
+curl http://localhost:7000/api/authenticated -I -H 'Authorization: Bearer ACA_VA_EL_TOKEN_SUPERLARRRRGO'
+#Devuelve: HTTP/1.1 200 
+
+curl http://localhost:7000/api/admin -I -H 'Authorization: Bearer ACA_VA_EL_TOKEN_SUPERLARRRRGO'
+#Con Token con role admin devuelve: HTTP/1.1 200
+#Con Token sin role admin devuelve: HTTP/1.1 403 
 ```
 
 ### Probar con Postman
@@ -101,7 +135,7 @@ Esto permite agregarle a los controladores la anotación
     }
 ```
 
-En JwtConverter se mapea los roles del Realm de KeyCloak a Spring Security. Esto es interesante porque nos permite utilizar diferentes formatos de JWT. Para verificarlo el que tenemos en frente podemos entrar a https://jwt.io.
+En JwtConverter se mapea los roles del Realm de KeyCloak a Spring Security. Esto es interesante porque nos permite utilizar diferentes formatos de JWT.
 
 En el caso de esta aplicación tenemos un filtro de roles permitidos. Puede pasar que en el payload de JWT vengan más roles pero que no son de interés para la aplicación. Para eso se agrega el parámetro authentication.validRoles al application.properties. Los valores por defecto son user y admin.
 
