@@ -17,9 +17,6 @@ public class SecurityConfig {
 
     private final JwtConverter jwtConverter;
 
-    public static final String ADMIN = "admin";
-    public static final String USER = "user";
-
     @Bean
     public SecurityFilterChain securityFilterChain(final HttpSecurity http)
             throws Exception {
@@ -29,16 +26,6 @@ public class SecurityConfig {
                                 "/swagger-ui/**",
                                 "/api-docs/**",
                                 "/actuator/**").permitAll()
-                        .requestMatchers(
-                                HttpMethod.GET,
-                                "/api/**").hasRole(USER)
-                        .requestMatchers(
-                                HttpMethod.POST,
-                                "/api/**").hasRole(ADMIN)
-                        .requestMatchers(
-                                HttpMethod.GET,
-                                "/api/admin-and-user/**")
-                        .hasAnyRole(ADMIN, USER)
                         .anyRequest().authenticated());
 
         http.sessionManagement(sess -> sess.sessionCreationPolicy(
