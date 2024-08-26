@@ -25,6 +25,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authz) ->
                 authz.requestMatchers(HttpMethod.GET,
                                 "/api/public",
+                                "v3/api-docs/**",
                                 "/swagger-ui/**",
                                 "/api-docs/**",
                                 "/actuator/**").permitAll()
