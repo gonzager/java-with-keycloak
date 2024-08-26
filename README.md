@@ -57,9 +57,9 @@ curl -d 'client_id=fluxit-client' \
 
 Esto debe devolver un json con el jwt en el campo access_token. 
 
-Este lo podes analizar en Si tenés jq agrega al final "| jq '.access_token'".
+Si tenés jq agrega al final "| jq '.access_token'".
 
-Para chusmearlo lo podés pegar en la caja de texto de la izquierda en https://jwt.io.
+Si te da curiosidad que viene en el Token lo podés revisar en: https://jwt.io. También te sirve para adaptar a otros payloads de token.
 
 ### Para probarlo desde consola
 
